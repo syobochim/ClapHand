@@ -1,0 +1,12 @@
+type Clap
+  @model (subscriptions: { onUpdate: [ "clap(id: ID!)"] })
+  @key(name: "SortByTimestamp", fields:["type", "timestamp"], queryField: "listClapsSortedByTimestamp")
+  @key(name: "ByEventOwner", fields:["owner", "timestamp"], queryField: "listClapsByOwner")
+{
+  type: String!
+  id: ID!
+  event: String!
+  owner: String
+  count: Int!
+  timestamp: AWSTimestamp!
+}

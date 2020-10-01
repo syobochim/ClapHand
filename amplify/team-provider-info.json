@@ -1,0 +1,15 @@
+{
+  "production": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-claphand-production-02002-authRole",
+      "UnauthRoleArn": "arn:aws:iam::488622630391:role/amplify-claphand-production-02002-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::488622630391:role/amplify-claphand-production-02002-authRole",
+      "Region": "ap-northeast-1",
+      "DeploymentBucketName": "amplify-claphand-production-02002-deployment",
+      "UnauthRoleName": "amplify-claphand-production-02002-unauthRole",
+      "StackName": "amplify-claphand-production-02002",
+      "StackId": "arn:aws:cloudformation:ap-northeast-1:488622630391:stack/amplify-claphand-production-02002/40571cf0-0267-11eb-a928-0a2ae92bf754",
+      "AmplifyAppId": "d3hj2hn0ypirih"
+    }
+  }
+}
