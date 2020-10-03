@@ -40,7 +40,6 @@ subscription OnUpdateClap($id: ID) {
   `);
 
 window.ipcRenderer.on('eventId', (event, eventId) => {
-
     client.hydrated().then(function (client) {
         client.query({
             query: initQuery,
@@ -58,9 +57,8 @@ window.ipcRenderer.on('eventId', (event, eventId) => {
                 id: eventId
             }
         });
-
         const realtimeResults = function realtimeResults(data) {
-            document.getElementById('count').textContent = data.data.getClap.count
+            document.getElementById('count').textContent = data.data.onUpdateClap.count
         };
         observable.subscribe({
             next: realtimeResults,
