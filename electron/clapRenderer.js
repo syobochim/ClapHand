@@ -4,14 +4,14 @@
 // `nodeIntegration` is turned off. Use `preload.js` to
 // selectively enable features needed in the rendering
 // process.
-
-const AWSAppSyncClient = require('aws-appsync').default;
+global.WebSocket = require('ws');
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
-global.WebSocket = require('ws');
+
 
 // Set up AppSync client
 const AWS_EXPORTS = require('./aws-exports');
+const AWSAppSyncClient = require('aws-appsync').default;
 const client = new AWSAppSyncClient({
   url: AWS_EXPORTS.aws_appsync_graphqlEndpoint,
   region: AWS_EXPORTS.aws_appsync_region,
@@ -23,12 +23,10 @@ const client = new AWSAppSyncClient({
   disableOffline: true
 });
 
-// Import gql helper and craft a GraphQL query
-const gql = require('graphql-tag');
-
 let clapId = "ab697096-eff7-4b9c-8ab8-0e62140b3d95"
 
 // 初期表示用データを取得する
+const gql = require('graphql-tag');
 const initQuery = gql(/* GraphQL */ `
 query GetClap($id : ID!) {
   getClap(id: $id) {

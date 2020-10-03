@@ -28,7 +28,7 @@ function createClapWindow() {
     alwaysOnTop: true,
     webPreferences: {
       nodeIntegration: true,
-      // preload: path.join(__dirname, 'preload.js')
+      preload: path.join(__dirname, 'preload.js')
     }
   })
   var size = electronScreen.getPrimaryDisplay().workAreaSize;
@@ -36,9 +36,6 @@ function createClapWindow() {
 
   // and load the index.html of the app.
   mainWindow.loadFile('index.html')
-
-  // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
 }
 
 function createTaskBar() {
@@ -55,13 +52,11 @@ function createTaskBar() {
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
   createSettingWindow()
-  createClapWindow()
   createTaskBar()
-  console.log('setting end.')
   app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
-    if (BrowserWindow.getAllWindows().length === 0) createClapWindow()
+    if (BrowserWindow.getAllWindows().length === 0) createSettingWindow()
   })
 })
 
@@ -74,3 +69,8 @@ app.on('window-all-closed', function () {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+
+ipcMain.handle('eventCode', async (event, eventCode) => {
+  createClapWindow()
+  return "complete"
+})
