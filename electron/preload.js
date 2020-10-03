@@ -12,3 +12,10 @@ window.addEventListener('DOMContentLoaded', () => {
 })
 
 window.ipcRenderer = require('electron').ipcRenderer
+
+global.WebSocket = require('ws');
+require('es6-promise').polyfill();
+require('isomorphic-fetch');
+window.gql = require('graphql-tag');
+window.AWS_EXPORTS = require('./aws-exports');
+window.AWSAppSyncClient = require('aws-appsync').default;

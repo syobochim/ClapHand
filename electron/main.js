@@ -1,3 +1,4 @@
+const { create } = require("domain");
 // Modules to control application life and create native browser window
 const {app, screen, Tray, Menu, BrowserWindow, ipcMain} = require("electron");
 const path = require('path')
@@ -16,7 +17,7 @@ function createSettingWindow() {
 }
 
 let mainWindow;
-function createClapWindow() {
+function createClapWindow(eventId) {
   // Create the browser window.
   var electronScreen = screen;
   mainWindow = new BrowserWindow({
@@ -27,7 +28,6 @@ function createClapWindow() {
     resizable: false,
     alwaysOnTop: true,
     webPreferences: {
-      nodeIntegration: true,
       preload: path.join(__dirname, 'preload.js')
     }
   })
@@ -47,11 +47,16 @@ function createTaskBar() {
   tray.setContextMenu(contextMenu)
 }
 
+function setEventCode(eventId) {
+  mainWindow.webContents.send('eventId', eventId)
+}
+
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
   createSettingWindow()
+  createClapWindow()
   createTaskBar()
   app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the
@@ -71,6 +76,6 @@ app.on('window-all-closed', function () {
 // code. You can also put them in separate files and require them here.
 
 ipcMain.handle('eventCode', async (event, eventCode) => {
-  createClapWindow()
+  setEventCode(eventCode)
   return "complete"
 })

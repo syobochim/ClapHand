@@ -4,30 +4,23 @@
 // `nodeIntegration` is turned off. Use `preload.js` to
 // selectively enable features needed in the rendering
 // process.
-global.WebSocket = require('ws');
-require('es6-promise').polyfill();
-require('isomorphic-fetch');
-
 
 // Set up AppSync client
-const AWS_EXPORTS = require('./aws-exports');
-const AWSAppSyncClient = require('aws-appsync').default;
+const AWSAppSyncClient = window.AWSAppSyncClient
 const client = new AWSAppSyncClient({
-  url: AWS_EXPORTS.aws_appsync_graphqlEndpoint,
-  region: AWS_EXPORTS.aws_appsync_region,
+  url: window.AWS_EXPORTS.aws_appsync_graphqlEndpoint,
+  region: window.AWS_EXPORTS.aws_appsync_region,
   auth: {
-    type: AWS_EXPORTS.aws_appsync_authenticationType,
-    apiKey: AWS_EXPORTS.aws_appsync_apiKey
+    type: window.AWS_EXPORTS.aws_appsync_authenticationType,
+    apiKey: window.AWS_EXPORTS.aws_appsync_apiKey
   },
   fetchPolicy: 'network-only',
   disableOffline: true
 });
 
-let clapId = "ab697096-eff7-4b9c-8ab8-0e62140b3d95"
 
 // 初期表示用データを取得する
-const gql = require('graphql-tag');
-const initQuery = gql(/* GraphQL */ `
+const initQuery = window.gql(/* GraphQL */ `
 query GetClap($id : ID!) {
   getClap(id: $id) {
     id
@@ -37,7 +30,7 @@ query GetClap($id : ID!) {
 `)
 
 // Set up a subscription query
-const subquery = gql(/* GraphQL */ `
+const subquery = window.gql(/* GraphQL */ `
 subscription OnUpdateClap($id: ID) {
   onUpdateClap(id: $id) {
     id
@@ -46,11 +39,13 @@ subscription OnUpdateClap($id: ID) {
   }}
   `);
 
+window.ipcRenderer.on('eventId', (event, eventId) => {
+
 client.hydrated().then(function (client) {
   client.query({
     query: initQuery,
     variables: {
-      id: clapId
+      id: eventId
     }
   }).then(function logData(data) {
     document.getElementById('emoji').textContent = data.data.getClap.emoji
@@ -60,7 +55,7 @@ client.hydrated().then(function (client) {
   const observable = client.subscribe({
     query: subquery,
     variables: {
-      id: clapId
+      id: eventId
     }
   });
 
@@ -73,3 +68,4 @@ client.hydrated().then(function (client) {
     error: console.error,
   });
 });
+})
