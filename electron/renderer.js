@@ -5,6 +5,7 @@
 // selectively enable features needed in the rendering
 // process.
 
-window.api.on("clap", (arg)=>{
-    document.getElementById("count").textContent = arg.count;
-});
+window.ipcRenderer.on('clap', (event, clap) => {
+    document.getElementById('emoji').textContent = clap.emoji
+    document.getElementById('count').textContent = clap.count
+})

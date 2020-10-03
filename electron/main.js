@@ -18,8 +18,6 @@ function createWindow() {
     resizable: true,
     alwaysOnTop: true,
     webPreferences: {
-      nodeIntegration: false,
-      contextIsolation: true,
       preload: path.join(__dirname, 'preload.js')
     }
   })
@@ -29,14 +27,11 @@ function createWindow() {
   mainWindow.loadFile('index.html')
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools()
+  // mainWindow.webContents.openDevTools()
 }
 
-function updateClapCount(count) {
-  mainWindow.webContents.send(
-    "clap", {
-    count: count
-  });
+function setClapData(clap) {
+  mainWindow.webContents.send('clap', clap)
 }
 
 // This method will be called when Electron has finished
@@ -73,7 +68,7 @@ global.WebSocket = require('ws');
 const AWS_EXPORTS = require('./aws-exports');
 const client = new AWSAppSyncClient({
   url: AWS_EXPORTS.aws_appsync_graphqlEndpoint,
-  region: AWS_EXPORTS.region,
+  region: AWS_EXPORTS.aws_appsync_region,
   auth: {
     type: AWS_EXPORTS.aws_appsync_authenticationType,
     apiKey: AWS_EXPORTS.aws_appsync_apiKey
@@ -94,17 +89,18 @@ query GetClap($id : ID!) {
   getClap(id: $id) {
     id
     count
+    emoji
   }
 }
 `)
 
 // Set up a subscription query
-// TODO : 絵文字もイベント作成時に設定したい＋取得したい
 const subquery = gql(/* GraphQL */ `
 subscription OnUpdateClap($id: ID) {
   onUpdateClap(id: $id) {
     id
     count
+    emoji
   }}
   `);
 
@@ -115,7 +111,7 @@ client.hydrated().then(function (client) {
       id: CLAP_ID
     }
   }).then(function logData(data) {
-    updateClapCount(data.data.getClap.count)
+    setClapData(data.data.getClap)
   }).catch(console.error);
 
   const observable = client.subscribe({
@@ -126,9 +122,8 @@ client.hydrated().then(function (client) {
   });
 
   const realtimeResults = function realtimeResults(data) {
-    updateClapCount(data.data.onUpdateClap.count)
+    setClapData(data.data.onUpdateClap)
   };
-
   observable.subscribe({
     next: realtimeResults,
     complete: console.log,
