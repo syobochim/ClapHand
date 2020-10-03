@@ -8,14 +8,14 @@
 // Set up AppSync client
 const AWSAppSyncClient = window.AWSAppSyncClient
 const client = new AWSAppSyncClient({
-  url: window.AWS_EXPORTS.aws_appsync_graphqlEndpoint,
-  region: window.AWS_EXPORTS.aws_appsync_region,
-  auth: {
-    type: window.AWS_EXPORTS.aws_appsync_authenticationType,
-    apiKey: window.AWS_EXPORTS.aws_appsync_apiKey
-  },
-  fetchPolicy: 'network-only',
-  disableOffline: true
+    url: window.AWS_EXPORTS.aws_appsync_graphqlEndpoint,
+    region: window.AWS_EXPORTS.aws_appsync_region,
+    auth: {
+        type: window.AWS_EXPORTS.aws_appsync_authenticationType,
+        apiKey: window.AWS_EXPORTS.aws_appsync_apiKey
+    },
+    fetchPolicy: 'network-only',
+    disableOffline: true
 });
 
 
@@ -41,31 +41,31 @@ subscription OnUpdateClap($id: ID) {
 
 window.ipcRenderer.on('eventId', (event, eventId) => {
 
-client.hydrated().then(function (client) {
-  client.query({
-    query: initQuery,
-    variables: {
-      id: eventId
-    }
-  }).then(function logData(data) {
-    document.getElementById('emoji').textContent = data.data.getClap.emoji
-    document.getElementById('count').textContent = data.data.getClap.count
-  }).catch(console.error);
+    client.hydrated().then(function (client) {
+        client.query({
+            query: initQuery,
+            variables: {
+                id: eventId
+            }
+        }).then(function logData(data) {
+            document.getElementById('emoji').textContent = data.data.getClap.emoji
+            document.getElementById('count').textContent = data.data.getClap.count
+        }).catch(console.error);
 
-  const observable = client.subscribe({
-    query: subquery,
-    variables: {
-      id: eventId
-    }
-  });
+        const observable = client.subscribe({
+            query: subquery,
+            variables: {
+                id: eventId
+            }
+        });
 
-  const realtimeResults = function realtimeResults(data) {
-    document.getElementById('count').textContent = data.data.getClap.count
-  };
-  observable.subscribe({
-    next: realtimeResults,
-    complete: console.log,
-    error: console.error,
-  });
-});
+        const realtimeResults = function realtimeResults(data) {
+            document.getElementById('count').textContent = data.data.getClap.count
+        };
+        observable.subscribe({
+            next: realtimeResults,
+            complete: console.log,
+            error: console.error,
+        });
+    });
 })
