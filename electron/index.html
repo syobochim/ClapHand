@@ -3,17 +3,16 @@
   <head>
     <meta charset="UTF-8">
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
-    <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'"> -->
+    <!-- <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'"> -->
     <link rel="stylesheet" href="./css/main.css">
   </head>
   <body>
-      <svg viewBox="0 0 100 100">
-        <text x="50%" y="30%" text-anchor="middle" dominant-baseline="central" id="emoji">👏</text>
-        <text x="50%" y="60%" text-anchor="middle" dominant-baseline="central" id="count">0</text>
-      </svg>
-  
+    <svg id="clap" viewBox="0 0 50 80">
+      <text x="50%" y="13%" text-anchor="middle" dominant-baseline="central" id="emoji">👏</text>
+      <text x="50%" y="40%" text-anchor="middle" dominant-baseline="central" id="count">0</text>
+    </svg>
     <!-- You can also require other files to run in this process -->
-    <script src="./renderer.js"></script>
+    <script src="./clapRenderer.js"></script>
   </body>
 </html>

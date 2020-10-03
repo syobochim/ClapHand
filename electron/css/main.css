@@ -8,11 +8,19 @@ text#hand {
     font-weight: bold;
   }
 
-  text#count {
-    font-size: 20px;
-    font-weight: bold;
-    fill: #000;
-    stroke: #FFF;
-    stroke-width: 1;
-    stroke-linejoin: round;
-  }
+text#count {
+  font-size: 20px;
+  font-weight: bold;
+  fill: #000;
+  stroke: #FFF;
+  stroke-width: 1;
+  stroke-linejoin: round;
+}
+
+div#setting {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+}

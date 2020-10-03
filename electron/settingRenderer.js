@@ -1,0 +1,1 @@
+console.log(ipcRenderer.sendSync('synchronous-message', 'ping')) 
