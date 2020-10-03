@@ -6,9 +6,8 @@ const BrowserWindow = electron.BrowserWindow;
 
 let mainWindow;
 
-function createWindow () {
+function createWindow() {
   // Create the browser window.
-  // mainWindow.setPosition()
   var electronScreen = electron.screen;
   var size = electronScreen.getPrimaryDisplay().workAreaSize;
   mainWindow = new BrowserWindow({
@@ -33,12 +32,19 @@ function createWindow () {
   mainWindow.webContents.openDevTools()
 }
 
+function updateClapCount(count) {
+  mainWindow.webContents.send(
+    "clap", {
+    count: count
+  });
+}
+
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
   createWindow()
-  
+
   app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
@@ -63,47 +69,69 @@ require('es6-promise').polyfill();
 require('isomorphic-fetch');
 global.WebSocket = require('ws');
 
-// Require exports file with endpoint and auth info
-// const aws_exports = require('./aws-exports').default;
-
-// INIT
 // Set up AppSync client
-// TODO : ベタがきなんとかしたい
+const AWS_EXPORTS = require('./aws-exports');
 const client = new AWSAppSyncClient({
-  url: "http://192.168.1.7:20002/graphql",
-  region: "ap-northeast-1",
+  url: AWS_EXPORTS.aws_appsync_graphqlEndpoint,
+  region: AWS_EXPORTS.region,
   auth: {
-      type: "API_KEY",
-      apiKey: "da2-fakeApiId123456"
-  }
+    type: AWS_EXPORTS.aws_appsync_authenticationType,
+    apiKey: AWS_EXPORTS.aws_appsync_apiKey
+  },
+  fetchPolicy: 'network-only',
+  disableOffline: true
 });
 
 // Import gql helper and craft a GraphQL query
 const gql = require('graphql-tag');
 
-// Set up a subscription query
-// TODO : Clapが絞り込めていない
-// TODO : 初期表示用データを取得する
-// TODO : 絵文字もイベント作成時に設定したい＋取得したい
-const subquery = gql(`
-subscription onClapUpdate {
-  clap(id: "34e2a9c5-388b-4919-a60c-05cdf772220d") {
+const CLAP_ID = "ab697096-eff7-4b9c-8ab8-0e62140b3d95"
+
+// TODO : IDをツールバーで入力させる
+// 初期表示用データを取得する
+const initQuery = gql(/* GraphQL */ `
+query GetClap($id : ID!) {
+  getClap(id: $id) {
+    id
     count
   }
-}`);
+}
+`)
+
+// Set up a subscription query
+// TODO : 絵文字もイベント作成時に設定したい＋取得したい
+const subquery = gql(/* GraphQL */ `
+subscription OnUpdateClap($id: ID) {
+  onUpdateClap(id: $id) {
+    id
+    count
+  }}
+  `);
+
 client.hydrated().then(function (client) {
-  const observable = client.subscribe({ query: subquery });
+  client.query({
+    query: initQuery,
+    variables: {
+      id: CLAP_ID
+    }
+  }).then(function logData(data) {
+    updateClapCount(data.data.getClap.count)
+  }).catch(console.error);
+
+  const observable = client.subscribe({
+    query: subquery,
+    variables: {
+      id: CLAP_ID
+    }
+  });
+
   const realtimeResults = function realtimeResults(data) {
-    console.log(data)
-    mainWindow.webContents.send(
-      "clap", {
-        count: data.data.clap.count
-      }
-    ); 
+    updateClapCount(data.data.onUpdateClap.count)
   };
+
   observable.subscribe({
     next: realtimeResults,
     complete: console.log,
-    error: console.log,
+    error: console.error,
   });
 });

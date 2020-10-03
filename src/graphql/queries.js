@@ -9,6 +9,7 @@ export const getClap = /* GraphQL */ `
       event
       owner
       count
+      emoji
       timestamp
       createdAt
       updatedAt
@@ -28,6 +29,7 @@ export const listClaps = /* GraphQL */ `
         event
         owner
         count
+        emoji
         timestamp
         createdAt
         updatedAt
@@ -59,6 +61,7 @@ export const listClapsSortedByTimestamp = /* GraphQL */ `
         event
         owner
         count
+        emoji
         timestamp
         createdAt
         updatedAt
@@ -90,6 +93,7 @@ export const listClapsByOwner = /* GraphQL */ `
         event
         owner
         count
+        emoji
         timestamp
         createdAt
         updatedAt

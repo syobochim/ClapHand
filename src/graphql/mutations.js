@@ -12,6 +12,7 @@ export const createClap = /* GraphQL */ `
       event
       owner
       count
+      emoji
       timestamp
       createdAt
       updatedAt
@@ -29,6 +30,7 @@ export const updateClap = /* GraphQL */ `
       event
       owner
       count
+      emoji
       timestamp
       createdAt
       updatedAt
@@ -46,6 +48,7 @@ export const deleteClap = /* GraphQL */ `
       event
       owner
       count
+      emoji
       timestamp
       createdAt
       updatedAt
