@@ -10,6 +10,7 @@ type Clap
   event: String
   count: Int!
   emoji: String!
+  url: String
   timestamp: AWSTimestamp!
 }
 
