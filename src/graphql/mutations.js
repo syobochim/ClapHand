@@ -9,8 +9,8 @@ export const createClap = /* GraphQL */ `
     createClap(input: $input, condition: $condition) {
       type
       id
-      event
       owner
+      event
       count
       emoji
       timestamp
@@ -27,8 +27,8 @@ export const updateClap = /* GraphQL */ `
     updateClap(input: $input, condition: $condition) {
       type
       id
-      event
       owner
+      event
       count
       emoji
       timestamp
@@ -45,8 +45,8 @@ export const deleteClap = /* GraphQL */ `
     deleteClap(input: $input, condition: $condition) {
       type
       id
-      event
       owner
+      event
       count
       emoji
       timestamp

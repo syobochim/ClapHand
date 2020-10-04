@@ -6,8 +6,8 @@ export const getClap = /* GraphQL */ `
     getClap(id: $id) {
       type
       id
-      event
       owner
+      event
       count
       emoji
       timestamp
@@ -26,8 +26,8 @@ export const listClaps = /* GraphQL */ `
       items {
         type
         id
-        event
         owner
+        event
         count
         emoji
         timestamp
@@ -58,8 +58,8 @@ export const listClapsSortedByTimestamp = /* GraphQL */ `
       items {
         type
         id
-        event
         owner
+        event
         count
         emoji
         timestamp
@@ -90,8 +90,8 @@ export const listClapsByOwner = /* GraphQL */ `
       items {
         type
         id
-        event
         owner
+        event
         count
         emoji
         timestamp

@@ -6,8 +6,8 @@ export const onUpdateClap = /* GraphQL */ `
     onUpdateClap(id: $id) {
       type
       id
-      event
       owner
+      event
       count
       emoji
       timestamp

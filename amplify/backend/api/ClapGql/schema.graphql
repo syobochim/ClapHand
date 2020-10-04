@@ -1,12 +1,13 @@
 type Clap
-  @model(subscriptions: null) 
+  @model(subscriptions: null)
+  @auth(rules: [{ allow: public }])
   @key(name: "SortByTimestamp", fields:["type", "timestamp"], queryField: "listClapsSortedByTimestamp")
   @key(name: "ByEventOwner", fields:["owner", "timestamp"], queryField: "listClapsByOwner")
 {
   type: String!
   id: ID!
-  event: String!
   owner: String
+  event: String
   count: Int!
   emoji: String!
   timestamp: AWSTimestamp!
