@@ -3,6 +3,10 @@
     text-align: center;
 }
 
+body {
+  margin: 0;
+}
+
 text#hand {
     font-size: 30px;
     font-weight: bold;
@@ -17,10 +21,23 @@ text#count {
   stroke-linejoin: round;
 }
 
-div#setting {
+div#setting  > * + * {
+  margin-top: 20px;
+}
+
+div#setting, div#input {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   height: 100vh;
+}
+
+#eventId {
+  text-align: center;
+}
+
+#eventCodeTitle {
+  font-weight: bold;
+  margin: 0;
 }

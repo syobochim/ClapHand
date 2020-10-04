@@ -1,6 +1,6 @@
 // 要素を取得
-const createButton = document.getElementById("create");
-const settingButton = document.getElementById("setting");
+const createButton = document.getElementById("createButton");
+const settingButton = document.getElementById("settingButton");
 
 async function goCreatePage() {
     location.href = "eventCreate.html"

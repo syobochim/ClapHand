@@ -7,8 +7,8 @@ let settingWindow;
 function createSettingWindow() {
   var electronScreen = screen;
   settingWindow = new BrowserWindow({
-    width: 300,
-    height: 200,
+    width: 500,
+    height: 300,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js')
     }
