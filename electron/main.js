@@ -13,7 +13,7 @@ function createSettingWindow() {
       preload: path.join(__dirname, 'preload.js')
     }
   })
-  settingWindow.loadFile('setting.html')
+  settingWindow.loadFile('public/setting.html')
 }
 
 let mainWindow;
@@ -35,7 +35,7 @@ function createClapWindow(eventId) {
   mainWindow.setPosition(size.width - 200, size.height - 200)
 
   // and load the index.html of the app.
-  mainWindow.loadFile('index.html')
+  mainWindow.loadFile('public/index.html')
 }
 
 function createTaskBar() {
