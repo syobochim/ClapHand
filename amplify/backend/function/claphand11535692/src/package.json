@@ -4,9 +4,13 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "aws-appsync": "^4.0.1",
     "aws-serverless-express": "^3.3.5",
     "body-parser": "^1.17.1",
-    "express": "^4.15.2"
+    "es6-promise": "^4.2.8",
+    "express": "^4.15.2",
+    "graphql-tag": "^2.11.0",
+    "isomorphic-fetch": "^3.0.0"
   },
   "devDependencies": {},
   "scripts": {
