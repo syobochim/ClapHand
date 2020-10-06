@@ -1,0 +1,35 @@
+{
+    "paths": [
+        {
+            "name": "/claps",
+            "lambdaFunction": "claphand11535692",
+            "privacy": {
+                "open": true
+            },
+            "policyResourceName": "/claps"
+        }
+    ],
+    "resourceName": "clap",
+    "apiName": "clap",
+    "functionArns": [
+        {
+            "lambdaFunction": "claphand11535692"
+        }
+    ],
+    "privacy": {
+        "auth": 0,
+        "unauth": 0,
+        "authRoleName": "amplify-claphand-production-02002-authRole",
+        "unAuthRoleName": "amplify-claphand-production-02002-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "claphand11535692",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}
