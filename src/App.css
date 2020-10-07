@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 }
+
+#emoji {
+  margin: 50px;
+  font-size: 100px;
+  cursor: pointer;
+}
+#emoji:active {
+  transform: translateY(-10px);
+}
