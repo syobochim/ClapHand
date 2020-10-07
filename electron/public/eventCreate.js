@@ -1,7 +1,7 @@
 // 要素を取得
 const button = document.getElementById("enter");
 // 最初は設定画面非表示
-document.getElementById("setting").style.display = "none"
+document.getElementById("created").style.display = "none"
 
 // Set up AppSync client
 const AWSAppSyncClient = window.AWSAppSyncClient
@@ -53,7 +53,7 @@ async function clickEvent() {
     }
     createEvent()
     document.getElementById("input").style.display = "none"
-    document.getElementById("setting").style.display = "flex"
+    document.getElementById("created").style.display = "flex"
 };
 
 //addEventListenerで登録

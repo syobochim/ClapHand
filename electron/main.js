@@ -13,7 +13,7 @@ function createSettingWindow() {
       preload: path.join(__dirname, 'preload.js')
     }
   })
-  settingWindow.loadFile('public/setting.html')
+  settingWindow.loadFile('public/menu.html')
 }
 
 let mainWindow;

@@ -1,15 +1,10 @@
-.hand {
-    font-size: 120px;
-    text-align: center;
-}
-
 body {
   margin: 0;
 }
 
-text#hand {
-    font-size: 30px;
-    font-weight: bold;
+text#emoji {
+    font-size: 20px;
+    user-select: none;
   }
 
 text#count {
@@ -19,18 +14,35 @@ text#count {
   stroke: #FFF;
   stroke-width: 1;
   stroke-linejoin: round;
+  user-select: none;
+}
+
+div#menu > * + * {
+  margin-left: 40px;
 }
 
 div#setting  > * + * {
   margin-top: 20px;
 }
 
-div#setting, div#input {
+div#setting, div#menu, div#input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+div#created {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   height: 100vh;
+}
+
+#createButton, #settingButton {
+  height: 50px;
+  width: 200px;
 }
 
 #eventId {
@@ -40,4 +52,8 @@ div#setting, div#input {
 #eventCodeTitle {
   font-weight: bold;
   margin: 0;
+}
+
+#enter {
+  margin-left: 40px;
 }
