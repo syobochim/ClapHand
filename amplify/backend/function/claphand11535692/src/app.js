@@ -29,13 +29,13 @@ query GetClap($id : ID!) {
   }}
 `)
 
-var clapMutation = gql(/* GraphQL */ `
-mutation UpdateClap($id: ID!, $count: Int!) {
-  updateClap(input: {id: $id, count: $count}) {
-    id
-    count
-    emoji
-  }}
+const clapMutation = gql(/* GraphQL */ `
+mutation UpdateClapCount($id: ID!) {
+    updateClapCount(id: $id) {
+      id
+      count
+    }
+  }
 `)
 
 // declare a new express app
@@ -74,24 +74,14 @@ app.put('/claps', function (req, res) {
   const CLAP_ID = req.query.id
   let clapCount = 0
   client.hydrated().then(function (client) {
-    client.query({
-      query: initQuery,
+    client.mutate({
+      mutation: clapMutation,
       variables: {
         id: CLAP_ID
       }
     }).then(function logData(data) {
-      clapCount = data.data.getClap.count + 1
-      client.mutate({
-        mutation: clapMutation,
-        variables: {
-            id: CLAP_ID,
-            count: clapCount
-        }
-      })
-      .then(function logData(data) {
         res.json({ count: clapCount })
-      })
-    }).catch(console.error);
+      }).catch(console.error);
   });
 });
 
