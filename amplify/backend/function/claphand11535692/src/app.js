@@ -52,7 +52,6 @@ app.use(function (req, res, next) {
 
 app.get('/claps', function (req, res) {
   const CLAP_ID = req.query.id
-  let clapCount = 0
   client.hydrated().then(function (client) {
     client.query({
       query: initQuery,
@@ -72,7 +71,6 @@ app.get('/claps', function (req, res) {
 
 app.put('/claps', function (req, res) {
   const CLAP_ID = req.query.id
-  let clapCount = 0
   client.hydrated().then(function (client) {
     client.mutate({
       mutation: clapMutation,
@@ -80,7 +78,7 @@ app.put('/claps', function (req, res) {
         id: CLAP_ID
       }
     }).then(function logData(data) {
-        res.json({ count: clapCount })
+        res.json({ count: data.data.updateClapCount.count })
       }).catch(console.error);
   });
 });

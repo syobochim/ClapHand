@@ -42,7 +42,9 @@ function createEvent() {
             }
         }).then(function logData(data) {
             eventCode = data.data.createClap.id
-            document.getElementById('eventId').textContent = eventCode
+            const EVENT_URL = "https://dprn9mw3rdpyz.cloudfront.net/?id=" + eventCode
+            document.getElementById('url').textContent = EVENT_URL
+            document.getElementById('qrcode').src = "https://chart.apis.google.com/chart?chs=150x150&cht=qr&chl=" + EVENT_URL
             window.ipcRenderer.invoke('eventCode', eventCode)
         }).catch(console.error);
     });

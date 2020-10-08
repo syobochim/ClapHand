@@ -40,6 +40,10 @@ div#input  > * + * {
   margin-top: 20px;
 }
 
+div#created  > * + * {
+  margin: 0px;
+}
+
 .createButton {
   right: 10px;
 }
@@ -76,7 +80,7 @@ div#created {
 
 #eventCodeTitle {
   font-weight: bold;
-  margin: 0;
+  margin: 10px
 }
 
 #eventSettingButton {
@@ -87,4 +91,8 @@ input#emoji {
   font-size: 80px;
   width: 100px;
   text-align: center;
+}
+
+span#url {
+  width: 400px;
 }
