@@ -25,11 +25,36 @@ div#setting  > * + * {
   margin-top: 20px;
 }
 
-div#setting, div#menu, div#input {
+div#setting, div#menu {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100vh;
+}
+
+div#input {
+  text-align: center;
+}
+
+div#input  > * + * {
+  margin-top: 20px;
+}
+
+.createButton {
+  right: 10px;
+}
+
+.column-name {
+  display: inline-block;
+  text-align: right;
+  margin-right: 10px;
+  margin-top: 20px;
+  width: 150px;
+}
+
+.column-data {
+  display: inline-block;
+  width: 200px;
 }
 
 div#created {
@@ -54,6 +79,12 @@ div#created {
   margin: 0;
 }
 
-#enter {
+#eventSettingButton {
   margin-left: 40px;
+}
+
+input#emoji {
+  font-size: 80px;
+  width: 100px;
+  text-align: center;
 }

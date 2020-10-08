@@ -1,5 +1,5 @@
 // 要素を取得
-const button = document.getElementById("enter");
+const button = document.getElementById("createEventButton");
 // 最初は設定画面非表示
 document.getElementById("created").style.display = "none"
 
@@ -27,10 +27,12 @@ const createMutation = window.gql(/* GraphQL */ `
 
 let emoji = "👏";
 let eventCode = null;
+let eventName = "";
+let eventOwner = "";
 
 function createEvent() {
     const timestamp = new Date().getTime()
-    const inputClap = { emoji: emoji, timestamp: timestamp, count: 0, type: "Clap" };
+    const inputClap = { emoji: emoji, timestamp: timestamp, count: 0, type: "Clap", event: eventName, owner: eventOwner};
 
     client.hydrated().then(function (client) {
         client.mutate({
@@ -41,7 +43,6 @@ function createEvent() {
         }).then(function logData(data) {
             eventCode = data.data.createClap.id
             document.getElementById('eventId').textContent = eventCode
-            document.getElementById('url').textContent = data.data.createClap.url
             window.ipcRenderer.invoke('eventCode', eventCode)
         }).catch(console.error);
     });
@@ -51,6 +52,8 @@ async function clickEvent() {
     if (document.getElementById("emoji").value != "") {
         emoji = document.getElementById("emoji").value
     }
+    eventName = document.getElementById("eventName").value
+    eventOwner = document.getElementById("eventOwner").value
     createEvent()
     document.getElementById("input").style.display = "none"
     document.getElementById("created").style.display = "flex"
