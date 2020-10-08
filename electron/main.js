@@ -25,7 +25,7 @@ function createClapWindow(eventId) {
     height: 200,
     transparent: true,
     frame: false,
-    resizable: false,
+    // resizable: false,
     alwaysOnTop: true,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js')

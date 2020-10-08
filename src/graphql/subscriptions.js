@@ -16,3 +16,18 @@ export const onUpdateClap = /* GraphQL */ `
     }
   }
 `;
+export const onUpdateClapCount = /* GraphQL */ `
+  subscription OnUpdateClapCount($id: ID) {
+    onUpdateClapCount(id: $id) {
+      type
+      id
+      owner
+      event
+      count
+      emoji
+      timestamp
+      createdAt
+      updatedAt
+    }
+  }
+`;

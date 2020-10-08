@@ -31,8 +31,8 @@ query GetClap($id : ID!) {
 
 // Set up a subscription query
 const subquery = window.gql(/* GraphQL */ `
-subscription OnUpdateClap($id: ID) {
-  onUpdateClap(id: $id) {
+subscription OnUpdateClapCount($id: ID) {
+  onUpdateClapCount(id: $id) {
     id
     count
     emoji
@@ -58,7 +58,7 @@ window.ipcRenderer.on('eventId', (event, eventId) => {
             }
         });
         const realtimeResults = function realtimeResults(data) {
-            document.getElementById('count').textContent = data.data.onUpdateClap.count
+            document.getElementById('count').textContent = data.data.onUpdateClapCount.count
         };
         observable.subscribe({
             next: realtimeResults,
