@@ -13,7 +13,6 @@ export const createClap = /* GraphQL */ `
       event
       count
       emoji
-      url
       timestamp
       createdAt
       updatedAt
@@ -32,7 +31,6 @@ export const updateClap = /* GraphQL */ `
       event
       count
       emoji
-      url
       timestamp
       createdAt
       updatedAt
@@ -51,7 +49,6 @@ export const deleteClap = /* GraphQL */ `
       event
       count
       emoji
-      url
       timestamp
       createdAt
       updatedAt

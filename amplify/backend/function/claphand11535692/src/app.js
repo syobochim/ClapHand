@@ -24,6 +24,8 @@ query GetClap($id : ID!) {
     id
     count
     emoji
+    event
+    owner
   }}
 `)
 
@@ -60,7 +62,9 @@ app.get('/claps', function (req, res) {
     }).then(function logData(data) {
       res.json({
         emoji: data.data.getClap.emoji,
-        count: data.data.getClap.count
+        count: data.data.getClap.count,
+        owner: data.data.getClap.owner,
+        event: data.data.getClap.event
       })
     }).catch(console.error);
   });

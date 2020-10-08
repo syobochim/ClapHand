@@ -10,7 +10,6 @@ export const onUpdateClap = /* GraphQL */ `
       event
       count
       emoji
-      url
       timestamp
       createdAt
       updatedAt
