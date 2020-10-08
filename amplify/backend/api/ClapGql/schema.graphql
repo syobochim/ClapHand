@@ -15,4 +15,9 @@ type Clap
 
 type Subscription {
   onUpdateClap(id: ID): Clap @aws_subscribe(mutations: ["updateClap"])
+  onUpdateClapCount(id: ID): Clap  @aws_subscribe(mutations: ["updateClapCount"])
+}
+
+type Mutation {
+  updateClapCount(id: ID!) :Clap
 }

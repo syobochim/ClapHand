@@ -1,6 +1,21 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const updateClapCount = /* GraphQL */ `
+  mutation UpdateClapCount($id: ID!) {
+    updateClapCount(id: $id) {
+      type
+      id
+      owner
+      event
+      count
+      emoji
+      timestamp
+      createdAt
+      updatedAt
+    }
+  }
+`;
 export const createClap = /* GraphQL */ `
   mutation CreateClap(
     $input: CreateClapInput!
