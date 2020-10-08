@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 
 function App() {
-  const [data, setData] = useState({ emoji: "👏" })
+  const [data, setData] = useState({ emoji: "👏", event: "", owner: "" })
   const eventId = new URL(window.location).searchParams.get("id")
 
   useEffect(() => {
@@ -13,7 +13,7 @@ function App() {
       } else {
         const resJson = await response.json()
         console.log(resJson)
-        setData({ emoji: resJson.emoji })
+        setData({ emoji: resJson.emoji , event: resJson.event, owner: resJson.owner})
       }
     };
     fetchData();
@@ -34,6 +34,12 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <p className="eventName">
+          {data.event}
+        </p>
+        <p className="eventOwner">
+          {data.owner}
+        </p>
         <p>
           {eventId}
         </p>

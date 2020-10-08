@@ -46,3 +46,9 @@
 #emoji:active {
   transform: translateY(-10px);
 }
+
+.eventName, .eventOwner {
+  font-size: 50px;
+  font-weight: bold;
+  margin: 20px;
+}
