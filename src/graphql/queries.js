@@ -149,3 +149,37 @@ export const listClapsByOwner = /* GraphQL */ `
     }
   }
 `;
+export const listClapsSortedByEvent = /* GraphQL */ `
+  query ListClapsSortedByEvent(
+    $event: String
+    $sortDirection: ModelSortDirection
+    $filter: ModelClapFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listClapsSortedByEvent(
+      event: $event
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        type
+        id
+        owner
+        event
+        count
+        emoji
+        timestamp
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;

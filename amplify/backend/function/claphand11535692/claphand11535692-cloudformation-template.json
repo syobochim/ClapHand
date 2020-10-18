@@ -69,7 +69,7 @@
         "Timeout": "25",
         "Code": {
           "S3Bucket": "amplify-claphand-production-02002-deployment",
-          "S3Key": "amplify-builds/claphand11535692-4268376c317635526d48-build.zip"
+          "S3Key": "amplify-builds/claphand11535692-6d4d4853465557536649-build.zip"
         }
       }
     },

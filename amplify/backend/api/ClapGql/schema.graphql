@@ -3,6 +3,7 @@ type Clap
   @auth(rules: [{ allow: public }])
   @key(name: "SortByTimestamp", fields:["type", "timestamp"], queryField: "listClapsSortedByTimestamp")
   @key(name: "ByEventOwner", fields:["owner", "timestamp"], queryField: "listClapsByOwner")
+  @key(name: "ByEventName", fields:["event"], queryField: "listClapsSortedByEvent")
 {
   type: String!
   id: ID!
