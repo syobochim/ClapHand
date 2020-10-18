@@ -8,8 +8,8 @@
           "defaultAuthentication": {
             "authenticationType": "API_KEY",
             "apiKeyConfig": {
-              "apiKeyExpirationDays": 360,
-              "description": ""
+              "apiKeyExpirationDays": 365,
+              "description": "Clap Hand"
             }
           },
           "additionalAuthenticationProviders": []
