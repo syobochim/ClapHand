@@ -11,6 +11,9 @@ export const onUpdateClapCount = /* GraphQL */ `
       count
       emoji
       timestamp
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }

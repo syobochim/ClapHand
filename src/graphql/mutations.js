@@ -11,6 +11,9 @@ export const updateClapCount = /* GraphQL */ `
       count
       emoji
       timestamp
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -29,6 +32,9 @@ export const createClap = /* GraphQL */ `
       count
       emoji
       timestamp
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -47,6 +53,9 @@ export const updateClap = /* GraphQL */ `
       count
       emoji
       timestamp
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -65,6 +74,9 @@ export const deleteClap = /* GraphQL */ `
       count
       emoji
       timestamp
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
