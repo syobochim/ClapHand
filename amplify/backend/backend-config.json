@@ -29,30 +29,10 @@
           ]
         }
       ]
-    },
-    "clapHandApiVersion": {
-      "service": "API Gateway",
-      "providerPlugin": "awscloudformation",
-      "dependsOn": [
-        {
-          "category": "function",
-          "resourceName": "clapHandApiVersion",
-          "attributes": [
-            "Name",
-            "Arn"
-          ]
-        }
-      ]
     }
   },
   "function": {
     "claphand11535692": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda",
-      "dependsOn": []
-    },
-    "clapHandApiVersion": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda",
