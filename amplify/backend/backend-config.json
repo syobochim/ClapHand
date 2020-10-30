@@ -46,12 +46,6 @@
     }
   },
   "function": {
-    "claphand11535692": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda",
-      "dependsOn": []
-    },
     "clapEvent": {
       "build": true,
       "providerPlugin": "awscloudformation",

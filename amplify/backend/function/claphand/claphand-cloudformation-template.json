@@ -9,6 +9,18 @@
     },
     "env": {
       "Type": "String"
+    },
+    "apiClapGqlGraphQLAPIIdOutput": {
+      "Type": "String",
+      "Default": "apiClapGqlGraphQLAPIIdOutput"
+    },
+    "apiClapGqlGraphQLAPIEndpointOutput": {
+      "Type": "String",
+      "Default": "apiClapGqlGraphQLAPIEndpointOutput"
+    },
+    "apiClapGqlGraphQLAPIKeyOutput": {
+      "Type": "String",
+      "Default": "apiClapGqlGraphQLAPIKeyOutput"
     }
   },
   "Conditions": {
@@ -33,12 +45,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "claphand11535692",
+            "claphand",
             {
               "Fn::Join": [
                 "",
                 [
-                  "claphand11535692",
+                  "claphand",
                   "-",
                   {
                     "Ref": "env"
@@ -55,6 +67,15 @@
             },
             "REGION": {
               "Ref": "AWS::Region"
+            },
+            "API_CLAPGQL_GRAPHQLAPIIDOUTPUT": {
+              "Ref": "apiClapGqlGraphQLAPIIdOutput"
+            },
+            "API_CLAPGQL_GRAPHQLAPIENDPOINTOUTPUT": {
+              "Ref": "apiClapGqlGraphQLAPIEndpointOutput"
+            },
+            "API_CLAPGQL_GRAPHQLAPIKEYOUTPUT": {
+              "Ref": "apiClapGqlGraphQLAPIKeyOutput"
             }
           }
         },
@@ -69,7 +90,7 @@
         "Timeout": "25",
         "Code": {
           "S3Bucket": "amplify-claphand-production-02002-deployment",
-          "S3Key": "amplify-builds/claphand11535692-6d4d4853465557536649-build.zip"
+          "S3Key": "amplify-builds/claphand-5472737074684a4f677a-build.zip"
         }
       }
     },
@@ -79,12 +100,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "claphandLambdaRole8b7cde4f",
+            "claphandLambdaRolef4a0b40f",
             {
               "Fn::Join": [
                 "",
                 [
-                  "claphandLambdaRole8b7cde4f",
+                  "claphandLambdaRolef4a0b40f",
                   "-",
                   {
                     "Ref": "env"
@@ -150,6 +171,58 @@
                   }
                 ]
               }
+            }
+          ]
+        }
+      }
+    },
+    "AmplifyResourcesPolicy": {
+      "DependsOn": [
+        "LambdaExecutionRole"
+      ],
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyName": "amplify-lambda-execution-policy",
+        "Roles": [
+          {
+            "Ref": "LambdaExecutionRole"
+          }
+        ],
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Action": [
+                "appsync:Create*",
+                "appsync:StartSchemaCreation",
+                "appsync:GraphQL",
+                "appsync:Get*",
+                "appsync:List*",
+                "appsync:Update*"
+              ],
+              "Resource": [
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:aws:appsync:",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      ":",
+                      {
+                        "Ref": "AWS::AccountId"
+                      },
+                      ":apis/",
+                      {
+                        "Ref": "apiClapGqlGraphQLAPIIdOutput"
+                      },
+                      "/*"
+                    ]
+                  ]
+                }
+              ]
             }
           ]
         }
