@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "api": {
+      "ClapGql": [
+        "read",
+        "update"
+      ]
+    }
+  },
+  "lambdaLayers": []
+}

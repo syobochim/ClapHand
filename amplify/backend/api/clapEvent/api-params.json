@@ -1,0 +1,35 @@
+{
+    "paths": [
+        {
+            "name": "/event",
+            "lambdaFunction": "clapEvent",
+            "privacy": {
+                "open": true
+            },
+            "policyResourceName": "/event"
+        }
+    ],
+    "resourceName": "clapEvent",
+    "apiName": "clapEvent",
+    "functionArns": [
+        {
+            "lambdaFunction": "clapEvent"
+        }
+    ],
+    "privacy": {
+        "auth": 0,
+        "unauth": 0,
+        "authRoleName": "amplify-claphand-production-02002-authRole",
+        "unAuthRoleName": "amplify-claphand-production-02002-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "clapEvent",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}
