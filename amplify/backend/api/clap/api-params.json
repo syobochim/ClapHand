@@ -1,19 +1,18 @@
 {
     "paths": [
         {
-            "name": "/claps",
-            "lambdaFunction": "claphand11535692",
+            "name": "/clap",
+            "lambdaFunction": "claphand",
             "privacy": {
                 "open": true
-            },
-            "policyResourceName": "/claps"
+            }
         }
     ],
     "resourceName": "clap",
     "apiName": "clap",
     "functionArns": [
         {
-            "lambdaFunction": "claphand11535692"
+            "lambdaFunction": "claphand"
         }
     ],
     "privacy": {
@@ -25,11 +24,12 @@
     "dependsOn": [
         {
             "category": "function",
-            "resourceName": "claphand11535692",
+            "resourceName": "claphand",
             "attributes": [
                 "Name",
                 "Arn"
             ]
         }
-    ]
+    ],
+    "uuid": "c0f9747e"
 }

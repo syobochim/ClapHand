@@ -5,6 +5,7 @@
     ENV
     REGION
 Amplify Params - DO NOT EDIT */
+
 require('isomorphic-fetch');
 const AWSAppSyncClient = require('aws-appsync').default;
 const gql = require('graphql-tag');
@@ -46,7 +47,14 @@ exports.handler = async (event) => {
     console.log(JSON.stringify(result));
     const response = {
         statusCode: 200,
+        headers: {
+            "Access-Control-Allow-Headers": "Content-Type",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "PUT,POST,GET"
+        },
         body: JSON.stringify(result)
     }
+    console.log('response: ', response)
+    console.log('response JSON : ', JSON.stringify(response))
     return response;
 };

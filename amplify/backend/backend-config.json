@@ -22,7 +22,7 @@
       "dependsOn": [
         {
           "category": "function",
-          "resourceName": "claphand11535692",
+          "resourceName": "claphand",
           "attributes": [
             "Name",
             "Arn"
@@ -53,6 +53,22 @@
       "dependsOn": []
     },
     "clapEvent": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "api",
+          "resourceName": "ClapGql",
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput",
+            "GraphQLAPIKeyOutput"
+          ]
+        }
+      ]
+    },
+    "claphand": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda",
