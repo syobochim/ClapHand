@@ -7,7 +7,7 @@ function App() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(`https://kogh98ozya.execute-api.ap-northeast-1.amazonaws.com/production/claps?id=${encodeURIComponent(eventId)}`)
+      const response = await fetch(`https://kogh98ozya.execute-api.ap-northeast-1.amazonaws.com/production/clap?id=${encodeURIComponent(eventId)}`)
       if (!response.ok) {
         console.error(response);
       } else {
@@ -20,7 +20,7 @@ function App() {
   }, [])
 
   const clickHandler = async () => {
-    const response = await fetch(`https://kogh98ozya.execute-api.ap-northeast-1.amazonaws.com/production/claps?id=${encodeURIComponent(eventId)}`, {
+    const response = await fetch(`https://kogh98ozya.execute-api.ap-northeast-1.amazonaws.com/production/clap?id=${encodeURIComponent(eventId)}`, {
       method: 'PUT'
     })
     if (!response.ok) {
