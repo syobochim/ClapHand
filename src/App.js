@@ -5,15 +5,15 @@ import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 
 am4core.useTheme(am4themes_animated);
+const eventId = new URL(window.location).searchParams.get("id")
 
 function App() {
-  const eventId = new URL(window.location).searchParams.get("id")
   const [data, setData] = useState({ eventId: eventId, emoji: "👏", event: "", owner: "" })
   const [showResult, setShowResult] = useState(false)
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(`https://kogh98ozya.execute-api.ap-northeast-1.amazonaws.com/production/clap?id=${encodeURIComponent(data.eventId)}`)
+      const response = await fetch(`https://kogh98ozya.execute-api.ap-northeast-1.amazonaws.com/production/clap?id=${encodeURIComponent(eventId)}`)
       if (!response.ok) {
         console.error(response);
       } else {
