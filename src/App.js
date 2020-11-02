@@ -7,10 +7,9 @@ import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 am4core.useTheme(am4themes_animated);
 
 function App() {
-  const [data, setData] = useState({ emoji: "👏", event: "", owner: "" })
-  const [showResult, setShowResult] = useState(false)
-  const [am4chart, setAm4Chart] = useState({})
   const eventId = new URL(window.location).searchParams.get("id")
+  const [data, setData] = useState({ eventId: eventId, emoji: "👏", event: "", owner: "" })
+  const [showResult, setShowResult] = useState(false)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,7 +19,7 @@ function App() {
       } else {
         const resJson = await response.json()
         console.log(resJson)
-        setData({ emoji: resJson.emoji, event: resJson.event, owner: resJson.owner })
+        setData({ eventId:  eventId, emoji: resJson.emoji, event: resJson.event, owner: resJson.owner })
       }
     };
     fetchData();
@@ -81,7 +80,6 @@ function App() {
 
     var bullet = series.bullets.push(new am4charts.LabelBullet());
     bullet.label.text = "{emoji}";
-    setAm4Chart(chart)
   }
 
   const eventHandler = () => {
@@ -113,7 +111,7 @@ function App() {
               {data.owner}
             </p>
             <p>
-              {eventId}
+              {data.eventId}
             </p>
             <p id="emoji" onClick={clickHandler}>
               {data.emoji}
