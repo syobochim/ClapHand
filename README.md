@@ -1,3 +1,6 @@
+# ClapHand
+
+![Amplify Deploy](https://github.com/syobochim/ClapHand/workflows/Amplify%20Deploy/badge.svg)
 
 ## Available Scripts
 
