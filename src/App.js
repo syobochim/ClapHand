@@ -13,7 +13,7 @@ function App() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(`https://kogh98ozya.execute-api.ap-northeast-1.amazonaws.com/production/clap?id=${encodeURIComponent(eventId)}`)
+      const response = await fetch(`https://kogh98ozya.execute-api.ap-northeast-1.amazonaws.com/production/clap?id=${encodeURIComponent(data.eventId)}`)
       if (!response.ok) {
         console.error(response);
       } else {
