@@ -37,6 +37,7 @@ mutation UpdateClapCount($id: ID!) {
     updateClapCount(id: $id) {
       id
       count
+      emoji
     }
   }
 `)
